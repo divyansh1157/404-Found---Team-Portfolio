@@ -1,17 +1,32 @@
-# 404-Found---Team-Portfolio
-Team portfolio site: https://srujan338.github.io/TeamPortfolio/
+# Hello! I'm Divyansh Srivastava
 
-Members:
+# About me
+I’m Divyansh Srivastava, a curious and driven individual with a strong passion for computing and programming. I enjoy solving complex problems, learning new technologies quickly, and continuously expanding my technical skill set. I am enthusiastic about building innovative solutions, exploring new ideas, and applying my skills across diverse fields and challenges.
 
-1) Name: Divyansh
+---
 
-Corpus username: divyansh1071
+# Technical Skiila
+- C/C++
+- Python
+- Basics of AI/ML
+- Foundations of Data Structures and Algorithms
 
-Contributions:
-- Implemented the *scroll progress bar* at the top of the page using a scroll event listener that calculates how far down the page the user has scrolled and updates the bar width in real time.
-- Built the *active navigation highlighting* system using IntersectionObserver — as the user scrolls through sections, the corresponding nav link automatically gets highlighted.
-- Wrote the *animated stat counters* (team members, technologies, projects, cups of coffee) that count up from zero when the hero section enters the viewport, using requestAnimationFrame for smooth easing.
-- Implemented the *scroll reveal animations* — elements fade up into view as they enter the viewport, using IntersectionObserver to add a .visible class only when needed (no layout thrash, no unnecessary repaints).
-- Built the *skill tab switcher, **project filter* (All / In progress / Shipped / Planned), and *resume tab switcher* — all three use the same pattern of toggling active classes and showing/hiding panels cleanly.
-- Set up the *Git repository structure*, defined the branching strategy the team follows, and managed merge conflicts during collaborative editing.
-- Did a *performance and cross-browser review* pass — checking that animations don't fire on hidden elements, that the progress bar doesn't block rendering, and that the JS degrades gracefully if a section ID is missing.
+---
+
+# Projects
+> Architectural Floor Plan Design: Designed detailed floor plans and sectional views for a two-storey building, followed by the development of a comprehensive 3D model while adhering to building regulations, structural considerations, and architectural design standards.
+> Comprehensive Campus Topographic Survey: Conducted a detailed topographic survey of the college campus using professional surveying instruments to develop accurate spatial maps and terrain representations.
+> Architectural Green Building Redesign: Redesigned a café outlet by developing detailed floor plans and site plans in compliance with building regulations and sustainable design principles. Incorporated green building strategies and conducted energy analysis to improve functionality, energy efficiency, and overall environmental performance.
+
+---
+
+# Aspirations
+I aspire to build innovative startups that leverage AI technologies to simplify business operations, enhance efficiency, and enable scalable growth. My goal is to develop solutions that streamline workflows, foster innovation, and create opportunities to work on and manage multiple impactful projects simultaneously.
+
+---
+
+# Languages known
+-English
+-Hindi
+
+---
