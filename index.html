@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>404 Found — Team Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #7a7f94;
+    --accent: #5b8dee;
+    --accent-light: #1a2340;
+    --accent-dark: #3b6fd4;
+    --green: #34d17a;
+    --green-light: #0d2e1f;
+    --orange: #f97316;
+    --orange-light: #2b1a0d;
+    --purple: #a78bfa;
+    --purple-light: #1e1535;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15,17,23,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .logo { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 4px; }
+  nav ul a {
+    text-decoration: none; color: var(--muted);
+    font-size: .8rem; font-weight: 500;
+    padding: 5px 10px; border-radius: 6px;
+    transition: color .15s, background .15s;
+  }
+  nav ul a:hover, nav ul a.active { color: var(--text); background: var(--border); }
+  .nav-progress {
+    position: fixed; top: 56px; left: 0; height: 2px;
+    background: var(--accent); z-index: 99;
+    transition: width .1s linear;
+    width: 0%;
+  }
+
+  /* ── LAYOUT ── */
+  .section { padding: 80px 40px; max-width: 900px; margin: 0 auto; }
+  .label { font-size: .72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  h2 { font-family: 'Instrument Serif', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: -.5px; line-height: 1.15; margin-bottom: 10px; }
+  .sub { color: var(--muted); font-size: .9rem; max-width: 460px; }
+  hr { border: none; border-top: 1px solid var(--border); }
+
+  /* ── HERO ── */
+  #home { padding-top: 100px; padding-bottom: 80px; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--accent-light); color: var(--accent);
+    font-size: .75rem; font-weight: 600; padding: 5px 12px;
+    border-radius: 100px; margin-bottom: 28px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400; line-height: 1.05;
+    letter-spacing: -2px; margin-bottom: 20px;
+  }
+  .hero-title em { color: var(--accent); font-style: italic; }
+  .hero-desc { color: var(--muted); max-width: 480px; font-size: .95rem; margin-bottom: 32px; line-height: 1.7; }
+  .hero-notes { display: flex; flex-direction: column; gap: 10px; }
+  .hero-note {
+    display: inline-flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px;
+    font-size: .85rem; color: var(--muted); max-width: 440px;
+  }
+  .hero-note .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 40px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .stat-num { font-family: 'Instrument Serif', serif; font-size: 2rem; color: var(--text); line-height: 1; }
+  .stat-label { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── TEAM CARDS ── */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+    transition: box-shadow .2s, transform .25s;
+    cursor: default; position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+  .card-srujan::before { background: var(--orange); }
+  .card-divyansh::before { background: var(--accent); }
+  .card-akshara::before { background: var(--purple); }
+  .card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.4); transform: translateY(-4px); }
+  .avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 14px;
+  }
+  .av-blue { background: var(--accent-light); }
+  .av-orange { background: var(--orange-light); }
+  .av-purple { background: var(--purple-light); }
+  .card-name { font-weight: 600; font-size: 1rem; margin-bottom: 3px; }
+  .card-role { font-size: .78rem; font-weight: 500; margin-bottom: 6px; }
+  .role-orange { color: var(--orange); }
+  .role-blue { color: var(--accent); }
+  .role-purple { color: var(--purple); }
+  .card-college { font-size: .78rem; color: var(--muted); margin-bottom: 14px; font-weight: 500; }
+  .card-info { font-size: .82rem; color: var(--muted); line-height: 1.8; }
+  .card-info strong { color: var(--text); font-weight: 500; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+  .tag {
+    background: #22253a; color: var(--muted); font-size: .7rem;
+    padding: 3px 9px; border-radius: 6px; font-weight: 500;
+    border: 1px solid var(--border);
+  }
+
+  /* ── SKILL TABS ── */
+  .skill-tabs { display: flex; gap: 8px; margin-top: 36px; margin-bottom: 20px; flex-wrap: wrap; }
+  .skill-tab {
+    padding: 6px 14px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-size: .8rem; font-weight: 500; cursor: pointer;
+    color: var(--muted); transition: all .15s;
+  }
+  .skill-tab:hover { color: var(--text); border-color: #555; }
+  .skill-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .skill-panel { display: none; }
+  .skill-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .skill-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px;
+    transition: border-color .15s;
+  }
+  .skill-item:hover { border-color: #555; }
+  .skill-emoji { font-size: 1.4rem; flex-shrink: 0; }
+  .skill-name { font-weight: 500; font-size: .88rem; }
+  .skill-count { font-size: .76rem; color: var(--muted); }
+  .skill-bar-wrap { height: 4px; background: #22253a; border-radius: 4px; margin-top: 5px; }
+  .skill-bar { height: 4px; border-radius: 4px; background: var(--accent); transition: width 1s ease; }
+
+  /* ── GOALS ── */
+  .goals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; }
+  .goal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 22px;
+    transition: border-color .15s, transform .2s;
+  }
+  .goal:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .goal-title { font-weight: 500; font-size: .9rem; margin-bottom: 6px; }
+  .goal-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── PROJECTS ── */
+  .project-filter { display: flex; gap: 8px; margin-top: 36px; margin-bottom: 20px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 5px 14px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-size: .78rem; font-weight: 500; cursor: pointer;
+    color: var(--muted); transition: all .15s;
+  }
+  .filter-btn.active { background: var(--text); color: white; border-color: var(--text); }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px;
+    transition: box-shadow .2s, transform .2s;
+    position: relative;
+  }
+  .project-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.4); transform: translateY(-3px); }
+  .project-card.hidden { display: none; }
+  .project-status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: .68rem; font-weight: 600; padding: 3px 9px;
+    border-radius: 100px; margin-bottom: 12px;
+  }
+  .status-wip { background: #2e2208; color: #fbbf24; }
+  .status-done { background: var(--green-light); color: var(--green); }
+  .status-planned { background: #1a2035; color: #94a3b8; }
+  .project-title { font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+  .project-desc { font-size: .82rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .stack-tag {
+    font-size: .68rem; padding: 2px 8px;
+    border-radius: 5px; font-weight: 500;
+    background: var(--accent-light); color: var(--accent);
+    border: 1px solid #2a3a5c;
+  }
+  .project-links { display: flex; gap: 8px; }
+  .proj-link {
+    font-size: .75rem; font-weight: 500; color: var(--muted);
+    text-decoration: none; display: flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border);
+    transition: all .15s;
+  }
+  .proj-link:hover { color: var(--text); border-color: #666; }
+  .project-empty {
+    grid-column: 1/-1; text-align: center; padding: 60px 20px;
+    background: var(--surface); border: 1px dashed var(--border);
+    border-radius: 14px;
+  }
+  .project-empty p { color: var(--muted); font-size: .88rem; margin-top: 8px; }
+  .project-empty .emp-icon { font-size: 2rem; }
+
+  /* ── WORKING ── */
+  .ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 36px; }
+  .way {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; text-align: center;
+    transition: border-color .15s;
+  }
+  .way:hover { border-color: var(--accent); }
+  .way-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .way-name { font-size: .85rem; font-weight: 500; margin-bottom: 4px; }
+  .way-desc { font-size: .78rem; color: var(--muted); }
+
+  /* ── OPEN SOURCE ── */
+  /* reuses .goals / .goal */
+
+  /* ── RESUME ── */
+  .resume-tabs { display: flex; gap: 10px; margin-top: 36px; margin-bottom: 24px; }
+  .res-tab {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 18px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--surface);
+    cursor: pointer; font-size: .85rem; font-weight: 500;
+    color: var(--muted); transition: all .15s; flex: 1; text-align: left;
+  }
+  .res-tab .res-av {
+    width: 32px; height: 32px; border-radius: 50%;
+    font-size: .9rem; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .res-tab:hover { color: var(--text); border-color: #555; }
+  .res-tab.active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .res-tab.active .res-name { color: var(--accent); }
+  .res-name { font-size: .85rem; font-weight: 600; color: var(--text); }
+  .res-role-sm { font-size: .72rem; color: var(--muted); }
+  .resume-panel { display: none; }
+  .resume-panel.active { display: block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .resume-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 36px;
+  }
+  .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .res-name-big { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-weight: 400; letter-spacing: -.3px; }
+  .res-role-big { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+  .res-contact { text-align: right; font-size: .78rem; color: var(--muted); line-height: 2; }
+  .res-section { margin-bottom: 22px; }
+  .res-section-title {
+    font-size: .72rem; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .res-edu, .res-exp { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .res-edu-name, .res-exp-name { font-weight: 500; font-size: .88rem; }
+  .res-edu-detail, .res-exp-detail { font-size: .8rem; color: var(--muted); }
+  .res-date { font-size: .78rem; color: var(--muted); white-space: nowrap; padding-left: 12px; }
+  .res-skills-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .res-skill-tag {
+    font-size: .75rem; padding: 3px 10px; border-radius: 6px;
+    background: #22253a; color: #c0c5d8; font-weight: 500;
+    border: 1px solid var(--border);
+  }
+  .res-download-row { display: flex; justify-content: flex-end; margin-top: 20px; }
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--text); color: white; font-size: .8rem; font-weight: 500;
+    padding: 8px 16px; border-radius: 8px; text-decoration: none;
+    cursor: pointer; transition: background .15s; border: none;
+  }
+  .dl-btn:hover { background: #555; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 40px 20px;
+    font-size: .8rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 640px) {
+    .cards, .projects-grid { grid-template-columns: 1fr; }
+    .goals, .skill-panel.active, .ways { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    nav, .section { padding-left: 20px; padding-right: 20px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .resume-tabs { flex-direction: column; }
+    .res-header { flex-direction: column; gap: 12px; }
+    .res-contact { text-align: left; }
+    .resume-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-progress" id="nprog"></div>
+
+<nav>
+  <a class="logo" href="#home">404 <span>Found</span></a>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#working">Working style</a></li>
+    <li><a href="#opensource">Open Source</a></li>
+    <li><a href="#resume">Resumes</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="section" id="home">
+  <div class="hero-badge"><span class="dot"></span> Swecha Internship 2026</div>
+  <h1 class="hero-title">Team<br><em>404 Found...</em></h1>
+  <p class="hero-desc">We were labeled missing — but we showed up anyway. Three curious minds from BITS Pilani Hyderabad, building things, breaking things, and learning fast at Swecha.</p>
+  <div class="hero-notes">
+    <div class="hero-note">
+      <span class="icon">💡</span>
+      <div><strong>Why 404 Found?</strong> Everyone expects 404 to mean something's missing. We flipped it — we're the ones who show up when no one expects it.</div>
+    </div>
+    <div class="hero-note">
+      <span class="icon">🎉</span>
+      <div><strong>Fun fact:</strong> Our team spans design, code and data — and we still agree on what to eat for lunch (most days).</div>
+    </div>
+  </div>
+  <div class="hero-stats reveal">
+    <div><div class="stat-num" id="counter-1">0</div><div class="stat-label">Team members</div></div>
+    <div><div class="stat-num" id="counter-2">0</div><div class="stat-label">Technologies known</div></div>
+    <div><div class="stat-num" id="counter-3">0</div><div class="stat-label">Projects planned</div></div>
+    <div><div class="stat-num" id="counter-4">0</div><div class="stat-label">Cups of ☕ so far</div></div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ TEAM ══ -->
+<div class="section reveal" id="team">
+  <div class="label">The team</div>
+  <h2>Meet the three of us</h2>
+  <p class="sub">Different strengths, one shared curiosity — and one very questionable team name.</p>
+
+  <div class="cards">
+    <div class="card card-divyansh">
+      <div class="avatar av-blue">🧑‍💻</div>
+      <div class="card-name">Divyansh</div>
+      <div class="card-role role-blue">Backend & Systems</div>
+      <div class="card-college">BITS Pilani Hyderabad Campus</div>
+      <div class="card-info">
+        <div><strong>Interests</strong> — APIs, databases, distributed systems</div>
+        <div><strong>Hobbies</strong> — Gaming, Chess</div>
+        <div><strong>Learning</strong> — Docker Swarm & Python/FastAPI</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Postgres</span><span class="tag">FastAPI</span><span class="tag">Docker</span>
+      </div>
+    </div>
+    <div class="card card-srujan">
+      <div class="avatar av-orange">🎨</div>
+      <div class="card-name">Srujan</div>
+      <div class="card-role role-orange">Frontend & Design</div>
+      <div class="card-college">BITS Pilani Hyderabad Campus</div>
+      <div class="card-info">
+        <div><strong>Interests</strong> — UI, design systems, motion</div>
+        <div><strong>Hobbies</strong> — Sketching, Gaming</div>
+        <div><strong>Learning</strong> — Three.js & animation</div>
+      </div>
+      <div class="tags">
+        <span class="tag">React</span><span class="tag">Figma</span><span class="tag">CSS</span><span class="tag">Three.js</span>
+      </div>
+    </div>
+    <div class="card card-akshara">
+      <div class="avatar av-purple">📊</div>
+      <div class="card-name">Akshara</div>
+      <div class="card-role role-purple">Data & ML</div>
+      <div class="card-college">BITS Pilani Hyderabad Campus</div>
+      <div class="card-info">
+        <div><strong>Interests</strong> — ML pipelines, research</div>
+        <div><strong>Hobbies</strong> — Reading, Hiking, Sketching</div>
+        <div><strong>Learning</strong> — EDA & HuggingFace</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">HuggingFace</span><span class="tag">Pandas</span><span class="tag">SQL</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ SKILLS ══ -->
+<div class="section reveal" id="skills">
+  <div class="label">Skills map</div>
+  <h2>What we bring</h2>
+  <p class="sub">Filter by member to see individual skill sets, or view it all together.</p>
+
+  <div class="skill-tabs">
+    <button class="skill-tab active" onclick="switchSkill('all', this)">All of us</button>
+    <button class="skill-tab" onclick="switchSkill('divyansh', this)">Divyansh</button>
+    <button class="skill-tab" onclick="switchSkill('srujan', this)">Srujan</button>
+    <button class="skill-tab" onclick="switchSkill('akshara', this)">Akshara</button>
+  </div>
+
+  <div class="skill-panel active" id="sp-all">
+    <div class="skill-item"><div class="skill-emoji">🐍</div><div style="flex:1"><div class="skill-name">Python</div><div class="skill-count">All 3 members</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:100%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">⚛️</div><div style="flex:1"><div class="skill-name">React</div><div class="skill-count">2 members</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:66%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🗄️</div><div style="flex:1"><div class="skill-name">SQL / Databases</div><div class="skill-count">2 members</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:66%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🤗</div><div style="flex:1"><div class="skill-name">ML / HuggingFace</div><div class="skill-count">1 member</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:33%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🎨</div><div style="flex:1"><div class="skill-name">UI / Figma</div><div class="skill-count">1 member</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:33%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🐳</div><div style="flex:1"><div class="skill-name">Docker</div><div class="skill-count">2 members</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:66%"></div></div></div></div>
+  </div>
+
+  <div class="skill-panel" id="sp-divyansh">
+    <div class="skill-item"><div class="skill-emoji">🐍</div><div style="flex:1"><div class="skill-name">Python / FastAPI</div><div class="skill-count">Advanced</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🗄️</div><div style="flex:1"><div class="skill-name">PostgreSQL</div><div class="skill-count">Intermediate</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🐳</div><div style="flex:1"><div class="skill-name">Docker / Swarm</div><div class="skill-count">Learning</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:45%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🔗</div><div style="flex:1"><div class="skill-name">REST APIs</div><div class="skill-count">Advanced</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div></div>
+  </div>
+
+  <div class="skill-panel" id="sp-srujan">
+    <div class="skill-item"><div class="skill-emoji">⚛️</div><div style="flex:1"><div class="skill-name">React</div><div class="skill-count">Intermediate</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🎨</div><div style="flex:1"><div class="skill-name">Figma / Design</div><div class="skill-count">Advanced</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🌐</div><div style="flex:1"><div class="skill-name">HTML / CSS</div><div class="skill-count">Advanced</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">✨</div><div style="flex:1"><div class="skill-name">Three.js / Motion</div><div class="skill-count">Learning</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div></div></div>
+  </div>
+
+  <div class="skill-panel" id="sp-akshara">
+    <div class="skill-item"><div class="skill-emoji">🐍</div><div style="flex:1"><div class="skill-name">Python / Pandas</div><div class="skill-count">Advanced</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🗄️</div><div style="flex:1"><div class="skill-name">SQL</div><div class="skill-count">Intermediate</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">🤗</div><div style="flex:1"><div class="skill-name">HuggingFace / ML</div><div class="skill-count">Learning</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:40%"></div></div></div></div>
+    <div class="skill-item"><div class="skill-emoji">📈</div><div style="flex:1"><div class="skill-name">EDA / Visualization</div><div class="skill-count">Intermediate</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:68%"></div></div></div></div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ GOALS ══ -->
+<div class="section reveal" id="goals">
+  <div class="label">Learning goals</div>
+  <h2>What we want to explore</h2>
+  <p class="sub">Things we're genuinely excited to build and learn this internship.</p>
+
+  <div class="goals">
+    <div class="goal">
+      <div class="goal-title">🤖 AI & LLM Engineering</div>
+      <div class="goal-desc">Build RAG pipelines, fine-tune small models, understand inference at scale.</div>
+    </div>
+    <div class="goal">
+      <div class="goal-title">☁️ Cloud-Native Systems</div>
+      <div class="goal-desc">Containers, CI/CD, and how production systems are architected reliably.</div>
+    </div>
+    <div class="goal">
+      <div class="goal-title">🌐 Open Source Contributions</div>
+      <div class="goal-desc">Ship meaningful PRs to real projects — features that actually get merged.</div>
+    </div>
+    <div class="goal">
+      <div class="goal-title">🚀 Ship Something Real</div>
+      <div class="goal-desc">Build something users can actually touch — solving a genuine problem.</div>
+    </div>
+    <div class="goal">
+      <div class="goal-title">🇮🇳 Telugu NLP</div>
+      <div class="goal-desc">Explore NLP for Indian languages — make AI accessible beyond English.</div>
+    </div>
+    <div class="goal">
+      <div class="goal-title">📐 Design Systems</div>
+      <div class="goal-desc">Learn how consistent, accessible design makes software better for everyone.</div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ PROJECTS ══ -->
+<div class="section reveal" id="projects">
+  <div class="label">Projects</div>
+  <h2>What we're building</h2>
+  <p class="sub">Our work during the internship — in progress, planned and shipped.</p>
+
+  <div class="project-filter">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('wip', this)">In progress</button>
+    <button class="filter-btn" onclick="filterProjects('done', this)">Shipped</button>
+    <button class="filter-btn" onclick="filterProjects('planned', this)">Planned</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <!-- ─── ADD NEW PROJECTS BELOW THIS LINE ─── -->
+    <!-- Copy the block below and fill in details to add a new project -->
+
+    <div class="project-card" data-status="wip">
+      <div class="project-status status-wip">⏳ In progress</div>
+      <div class="project-title">Team Portfolio Website</div>
+      <div class="project-desc">This very site — our team intro, skills map, and project showcase for the Swecha internship.</div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span>
+      </div>
+      <!-- <div class="project-links">
+        <a class="proj-link" href="#">🔗 Live site</a>
+        <a class="proj-link" href="#">📁 GitHub</a>
+      </div> -->
+    </div>
+
+    <div class="project-card" data-status="planned">
+      <div class="project-status status-planned">🗓 Planned</div>
+      <div class="project-title">Telugu NLP Explorer</div>
+      <div class="project-desc">A lightweight tool to explore NLP capabilities for the Telugu language using open-source models.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">HuggingFace</span><span class="stack-tag">Streamlit</span>
+      </div>
+      <!-- <div class="project-links">
+        <a class="proj-link" href="#">📁 GitHub</a>
+      </div> -->
+    </div>
+
+    <div class="project-card" data-status="planned">
+      <div class="project-status status-planned">🗓 Planned</div>
+      <div class="project-title">Open Data Dashboard</div>
+      <div class="project-desc">Visualizing civic open datasets — transport, health, infrastructure — for Hyderabad.</div>
+      <div class="project-stack">
+        <span class="stack-tag">React</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Postgres</span>
+      </div>
+      <!-- <div class="project-links">
+        <a class="proj-link" href="#">📁 GitHub</a>
+      </div> -->
+    </div>
+
+    <!-- ─── ADD NEW PROJECTS ABOVE THIS LINE ─── -->
+
+  </div>
+
+  <p style="font-size:.78rem; color:var(--muted); margin-top: 20px; text-align: center;">
+    🛠 More projects will appear here as the internship progresses. Stay tuned!
+  </p>
+</div>
+
+<hr/>
+
+<!-- ══ WORKING STYLE ══ -->
+<div class="section reveal" id="working">
+  <div class="label">Working style</div>
+  <h2>How we operate</h2>
+  <p class="sub">Simple rituals that keep us aligned and moving fast.</p>
+
+  <div class="ways">
+    <div class="way"><div class="way-icon">☀️</div><div class="way-name">Daily standups</div><div class="way-desc">15 min async check-ins every morning</div></div>
+    <div class="way"><div class="way-icon">🎬</div><div class="way-name">Friday demos</div><div class="way-desc">Show working code — no excuses</div></div>
+    <div class="way"><div class="way-icon">👥</div><div class="way-name">Pair programming</div><div class="way-desc">Rotating pairs on hard problems</div></div>
+    <div class="way"><div class="way-icon">🔍</div><div class="way-name">Code reviews</div><div class="way-desc">Every PR gets at least one review</div></div>
+    <div class="way"><div class="way-icon">🔄</div><div class="way-name">Bi-weekly retros</div><div class="way-desc">What worked, what didn't, what changes</div></div>
+    <div class="way"><div class="way-icon">📝</div><div class="way-name">Document always</div><div class="way-desc">READMEs and notes as we go</div></div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ OPEN SOURCE ══ -->
+<div class="section reveal" id="opensource">
+  <div class="label">Open source</div>
+  <h2>For the society</h2>
+  <p class="sub">Making technology accessible, local, and meaningful — not just functional.</p>
+
+  <div class="goals" style="margin-top: 36px;">
+    <div class="goal"><div class="goal-title">🌿 Swecha</div><div class="goal-desc">Our own community. Building tech that's accessible, local, and actually reaches people who need it.</div></div>
+    <div class="goal"><div class="goal-title">🇮🇳 AI4Bharat</div><div class="goal-desc">NLP tools for Indian languages. Making AI work in Telugu and beyond — not just English.</div></div>
+    <div class="goal"><div class="goal-title">📚 FOSSEE</div><div class="goal-desc">Free software for education across India. Helping students in tier-2/3 cities access real tools.</div></div>
+    <div class="goal"><div class="goal-title">🐧 Linux / GNU</div><div class="goal-desc">The foundation everything we use is built on. Understanding it deeply is on the list.</div></div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ RESUMES ══ -->
+<div class="section reveal" id="resume">
+  <div class="label">Resumes</div>
+  <h2>Our backgrounds</h2>
+  <p class="sub">Click on a name to see their full profile and what they bring to the table.</p>
+
+  <div class="resume-tabs">
+    <button class="res-tab active" onclick="switchResume('res-divyansh', this)">
+      <div class="res-av av-blue">🧑‍💻</div>
+      <div><div class="res-name">Divyansh</div><div class="res-role-sm">Backend & Systems</div></div>
+    </button>
+    <button class="res-tab" onclick="switchResume('res-srujan', this)">
+      <div class="res-av av-orange">🎨</div>
+      <div><div class="res-name">Srujan</div><div class="res-role-sm">Frontend & Design</div></div>
+    </button>
+    <button class="res-tab" onclick="switchResume('res-akshara', this)">
+      <div class="res-av av-purple">📊</div>
+      <div><div class="res-name">Akshara</div><div class="res-role-sm">Data & ML</div></div>
+    </button>
+  </div>
+
+  <!-- DIVYANSH RESUME -->
+  <div class="resume-panel active" id="res-divyansh">
+    <div class="resume-card">
+      <div class="res-header">
+        <div>
+          <div class="res-name-big">Divyansh</div>
+          <div class="res-role-big">Backend Engineer · Swecha Intern 2026</div>
+        </div>
+        <div class="res-contact">
+          📍 Hyderabad, India<br>
+          📧 f20241157@hyderabad.bits-pilani.ac.in<br>
+          🐙 github.com/divyansh1157
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Education</div>
+        <div class="res-edu">
+          <div><div class="res-edu-name">BITS Pilani, Hyderabad Campus</div>
+          <div class="res-edu-detail">B.E. Civil Engineering</div></div>
+          <div class="res-date">2024 – 2028</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Experience</div>
+        <div class="res-exp">
+          <div><div class="res-exp-name">Software Intern · Swecha</div>
+          <div class="res-edu-detail">Building real-world systems with the team</div></div>
+          <div class="res-date">2026</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Technical Skills</div>
+        <div class="res-skills-list">
+          <span class="res-skill-tag">Python</span>
+          <span class="res-skill-tag">FastAPI</span>
+          <span class="res-skill-tag">PostgreSQL</span>
+          <span class="res-skill-tag">Docker</span>
+          <span class="res-skill-tag">REST APIs</span>
+          <span class="res-skill-tag">Linux</span>
+          <span class="res-skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Interests</div>
+        <div style="font-size:.84rem; color:var(--muted); line-height:1.7;">
+          Distributed systems · Database internals · Open source backend tooling · Chess
+        </div>
+      </div>
+      <!-- <div class="res-download-row">
+        <button class="dl-btn" onclick="window.print()">⬇ Download PDF</button>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- SRUJAN RESUME -->
+  <div class="resume-panel" id="res-srujan">
+    <div class="resume-card">
+      <div class="res-header">
+        <div>
+          <div class="res-name-big">Srujan</div>
+          <div class="res-role-big">Frontend Designer · Swecha Intern 2026</div>
+        </div>
+        <div class="res-contact">
+          📍 Hyderabad, India<br>
+          📧 f20241010@hyderabad.bits-pilani.ac.in<br>
+          🐙 github.com/srujan338
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Education</div>
+        <div class="res-edu">
+          <div><div class="res-edu-name">BITS Pilani, Hyderabad Campus</div>
+          <div class="res-edu-detail">B.E. Civil Engineering</div></div>
+          <div class="res-date">2024 – 2028</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Experience</div>
+        <div class="res-exp">
+          <div><div class="res-exp-name">Design & Frontend Intern · Swecha</div>
+          <div class="res-edu-detail">UI design and frontend implementation</div></div>
+          <div class="res-date">2026</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Technical Skills</div>
+        <div class="res-skills-list">
+          <span class="res-skill-tag">React</span>
+          <span class="res-skill-tag">Figma</span>
+          <span class="res-skill-tag">HTML/CSS</span>
+          <span class="res-skill-tag">JavaScript</span>
+          <span class="res-skill-tag">Three.js</span>
+          <span class="res-skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Interests</div>
+        <div style="font-size:.84rem; color:var(--muted); line-height:1.7;">
+          Design systems · Motion design · Digital illustration · Generative art · Gaming
+        </div>
+      </div>
+      <!-- <div class="res-download-row">
+        <button class="dl-btn" onclick="window.print()">⬇ Download PDF</button>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- AKSHARA RESUME -->
+  <div class="resume-panel" id="res-akshara">
+    <div class="resume-card">
+      <div class="res-header">
+        <div>
+          <div class="res-name-big">Akshara</div>
+          <div class="res-role-big">Data Analyst · Swecha Intern 2026</div>
+        </div>
+        <div class="res-contact">
+          📍 Hyderabad, India<br>
+          📧 f20240655@hyderabad.bits-pilani.ac.in<br>
+          🐙 github.com/aksharap22
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Education</div>
+        <div class="res-edu">
+          <div><div class="res-edu-name">BITS Pilani, Hyderabad Campus</div>
+          <div class="res-edu-detail">Integrated MSc Mathematics and ECE</div></div>
+          <div class="res-date">2024 – 2029</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Experience</div>
+        <div class="res-exp">
+          <div><div class="res-exp-name">Data & ML Intern · Swecha</div>
+          <div class="res-edu-detail">EDA, ML pipelines and data visualisation</div></div>
+          <div class="res-date">2026</div>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Technical Skills</div>
+        <div class="res-skills-list">
+          <span class="res-skill-tag">Python</span>
+          <span class="res-skill-tag">Pandas</span>
+          <span class="res-skill-tag">SQL</span>
+          <span class="res-skill-tag">HuggingFace</span>
+          <!-- <span class="res-skill-tag">Matplotlib</span>
+          <span class="res-skill-tag">Scikit-learn</span> -->
+          <span class="res-skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-title">Interests</div>
+        <div style="font-size:.84rem; color:var(--muted); line-height:1.7;">
+          ML research · NLP for Indian languages · Data journalism · Reading · Hiking
+        </div>
+      </div>
+      <!-- <div class="res-download-row">
+        <button class="dl-btn" onclick="window.print()">⬇ Download PDF</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  Made with ☕ by <strong>Team 404 Found</strong> · Swecha Internship 2026 · BITS Pilani Hyderabad
+</footer>
+
+<script>
+/* ── PROGRESS BAR ── */
+window.addEventListener('scroll', () => {
+  const el = document.documentElement;
+  const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+  document.getElementById('nprog').style.width = pct + '%';
+});
+
+/* ── ACTIVE NAV ── */
+const navLinks = document.querySelectorAll('nav ul a');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── COUNTERS ── */
+function animCount(id, target, duration) {
+  let start = null;
+  const el = document.getElementById(id);
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    el.textContent = Math.round(p * target);
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animCount('counter-1', 3, 800);
+      animCount('counter-2', 14, 1200);
+      animCount('counter-3', 3, 1000);
+      animCount('counter-4', 47, 1500);
+      counterObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+counterObs.observe(document.getElementById('counter-1'));
+
+/* ── SKILL TABS ── */
+function switchSkill(id, btn) {
+  document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('sp-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── PROJECT FILTER ── */
+function filterProjects(status, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(c => {
+    c.classList.toggle('hidden', status !== 'all' && c.dataset.status !== status);
+  });
+}
+
+/* ── RESUME TABS ── */
+function switchResume(id, btn) {
+  document.querySelectorAll('.resume-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.res-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script> 
+</body>
+</html>
