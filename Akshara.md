@@ -80,4 +80,4 @@ I aspire to become an AI Engineer and contribute to building intelligent systems
 ## Project Status
 Currently learning and building projects in AI, Machine Learning, and software development.
 
-Thanks for visiting my profile!
+Thanks for visiting my profile
