@@ -26,7 +26,7 @@ I aspire to build innovative startups that leverage AI technologies to simplify 
 ---
 
 # Languages known
--English
--Hindi
+- English
+- Hindi
 
 ---
