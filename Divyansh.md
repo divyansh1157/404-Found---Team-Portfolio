@@ -14,9 +14,9 @@ I’m Divyansh Srivastava, a curious and driven individual with a strong passion
 ---
 
 # Projects
-> Architectural Floor Plan Design: Designed detailed floor plans and sectional views for a two-storey building, followed by the development of a comprehensive 3D model while adhering to building regulations, structural considerations, and architectural design standards.
-> Comprehensive Campus Topographic Survey: Conducted a detailed topographic survey of the college campus using professional surveying instruments to develop accurate spatial maps and terrain representations.
-> Architectural Green Building Redesign: Redesigned a café outlet by developing detailed floor plans and site plans in compliance with building regulations and sustainable design principles. Incorporated green building strategies and conducted energy analysis to improve functionality, energy efficiency, and overall environmental performance.
+- Architectural Floor Plan Design: Designed detailed floor plans and sectional views for a two-storey building, followed by the development of a comprehensive 3D model while adhering to building regulations, structural considerations, and architectural design standards.
+- Comprehensive Campus Topographic Survey: Conducted a detailed topographic survey of the college campus using professional surveying instruments to develop accurate spatial maps and terrain representations.
+- Architectural Green Building Redesign: Redesigned a café outlet by developing detailed floor plans and site plans in compliance with building regulations and sustainable design principles. Incorporated green building strategies and conducted energy analysis to improve functionality, energy efficiency, and overall environmental performance.
 
 ---
 
