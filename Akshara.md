@@ -1,4 +1,4 @@
-# Hey, I'm Akshara 👋
+# Hey, I'm Akshara 
 
 ## About Me
 I am an Integrated MSc Mathematics and ECE student at BITS Pilani Hyderabad Campus with a strong interest in Artificial Intelligence, Machine Learning, and data analysis.
@@ -80,4 +80,4 @@ I aspire to become an AI Engineer and contribute to building intelligent systems
 ## Project Status
 Currently learning and building projects in AI, Machine Learning, and software development.
 
-Thanks for visiting my profile
+Thanks for visiting my profile!
