@@ -5,7 +5,7 @@ I’m Divyansh Srivastava, a curious and driven individual with a strong passion
 
 ---
 
-# Technical Skiila
+# Technical Skills
 - C/C++
 - Python
 - Basics of AI/ML
